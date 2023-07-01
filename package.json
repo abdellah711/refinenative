@@ -1,12 +1,16 @@
 {
   "name": "refinenative-repo",
   "version": "0.0.1",
+  "private": true,
   "description": "Build Crud mobile and web apps 3x faster with refine and expo",
   "author": "abdellah711",
   "license": "MIT",
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "build": "lerna run build"
+  },
   "dependencies": {},
   "devDependencies": {
     "lerna": "^7.1.1"

@@ -1,0 +1,19 @@
+{
+  "name": "@refinenative/expo-router",
+  "version": "0.0.1",
+  "description": "refine expo-router provider",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "author": "abdellah711",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "tsup --format esm,cjs,iife --legacy-output",
+    "build": "tsup --minify --format esm,cjs,iife --legacy-output"
+  },
+  "devDependencies": {
+    "@esbuild-plugins/node-resolve": "^0.2.2",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6"
+  }
+}
