@@ -1,12 +1,13 @@
 {
   "name": "@refinenative/expo-router",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "refine expo-router provider",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "author": "abdellah711",
   "license": "MIT",
   "private": false,
+  "typings": "dist/index.d.ts",
   "scripts": {
     "start": "tsup --format esm,cjs,iife --legacy-output",
     "build": "tsup --minify --format esm,cjs,iife --legacy-output"
@@ -27,5 +28,13 @@
     "expo-router": "^1.5.3",
     "react": "^18.2.0",
     "react-native": "^0.72.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdellah711/refinenative.git",
+    "directory": "packages/expo-router"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
