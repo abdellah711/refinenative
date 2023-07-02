@@ -1,1 +1,1 @@
-export const index = 'expo-router'
+export { routerBindings as default } from "./bindings";

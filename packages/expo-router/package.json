@@ -13,7 +13,19 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.2.2",
+    "@types/qs": "^6.9.7",
+    "@types/react": "^18.2.14",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "expo-router": "^1.5.3",
+    "qs": "^6.11.2"
+  },
+  "peerDependencies": {
+    "@refinedev/core": "^4.26.2",
+    "expo-router": "^1.5.3",
+    "react": "^18.2.0",
+    "react-native": "^0.72.1"
   }
 }
