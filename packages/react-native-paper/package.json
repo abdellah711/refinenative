@@ -1,0 +1,39 @@
+{
+  "name": "@refinenative/react-native-paper",
+  "version": "0.0.1",
+  "description": "react native paper components for refine apps",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "author": "abdellah711",
+  "license": "MIT",
+  "private": false,
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsup --format esm,cjs,iife --legacy-output",
+    "build": "tsup --minify --format esm,cjs,iife --legacy-output"
+  },
+  "devDependencies": {
+    "@esbuild-plugins/node-resolve": "^0.2.2",
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@refinedev/core": "^4.0.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-native": "^0.70.0",
+    "react-native-paper": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdellah711/refinenative.git",
+    "directory": "packages/react-native-paper"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

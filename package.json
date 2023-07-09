@@ -13,6 +13,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "lerna": "^7.1.1"
+    "@refinedev/core": "^4.26.2",
+    "lerna": "^7.1.1",
+    "react": "^18.2.0",
+    "react-native": "^0.72.1",
+    "typescript": "^5.1.6"
   }
 }
