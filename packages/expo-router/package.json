@@ -8,26 +8,60 @@
   "license": "MIT",
   "private": false,
   "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "tsup --format esm,cjs,iife --legacy-output",
     "build": "tsup --minify --format esm,cjs,iife --legacy-output"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.2.2",
+    "@expo/vector-icons": "^13.0.0",
+    "@react-navigation/drawer": "^6.5.8",
+    "@refinedev/ui-types": "^1.18.0",
     "@types/qs": "^6.9.7",
-    "@types/react": "^18.2.14",
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "@types/url-parse": "^1.4.8",
+    "expo-router": "^1.5.3",
     "tsup": "^7.1.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "expo-constants": "*",
+    "expo-linking": "*",
+    "expo-status-bar": "*",
+    "metro": "~0.76.7",
+    "react-native-gesture-handler": "*",
+    "react-native-reanimated": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-screens": "*"
   },
   "dependencies": {
-    "expo-router": "^1.5.3",
     "qs": "^6.11.2"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.26.2",
-    "expo-router": "^1.5.3",
-    "react": "^18.2.0",
-    "react-native": "^0.72.1"
+    "@expo/vector-icons": "^13.0.0",
+    "@react-navigation/drawer": "^6.5.8",
+    "@refinedev/core": "^4.0.0",
+    "expo": "^45.0.0",
+    "expo-constants": "*",
+    "expo-linking": "*",
+    "expo-router": "^1.0.0",
+    "expo-status-bar": "*",
+    "metro": "~0.76.7",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-native": "^0.70.0",
+    "react-native-gesture-handler": "*",
+    "react-native-reanimated": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-screens": "*"
+  },
+  "peerDependenciesMeta": {
+    "react-native-reanimated": {
+      "optional": true
+    },
+    "@react-navigation/drawer": {
+      "optional": true
+    }
   },
   "repository": {
     "type": "git",
