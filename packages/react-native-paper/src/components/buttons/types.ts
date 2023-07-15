@@ -1,11 +1,28 @@
-import { RefineCreateButtonProps, RefineSaveButtonProps } from '@refinedev/ui-types'
+import {
+    RefineCreateButtonProps,
+    RefineSaveButtonProps,
+    RefineShowButtonProps,
+    RefineEditButtonProps,
+    RefineDeleteButtonProps,
+} from '@refinedev/ui-types'
 import { ButtonProps, FABProps } from 'react-native-paper'
 
-export type ButtonOrFAB =  (
+export type ButtonOrFAB = (
+    | Partial<ButtonProps> & { asFAB?: false }
+    | Partial<FABProps> & { asFAB: true }
+)
+
+export type FABOrButton = (
     | Partial<ButtonProps> & { asFAB: false }
     | Partial<FABProps> & { asFAB?: true }
 )
 
-export type CreateButtonProps = RefineCreateButtonProps<ButtonOrFAB>
+export type CreateButtonProps = RefineCreateButtonProps<FABOrButton>
 
 export type SaveButtonProps = RefineSaveButtonProps<ButtonOrFAB>
+
+export type ShowButtonProps = RefineShowButtonProps<ButtonOrFAB>
+
+export type EditButtonProps = RefineEditButtonProps<ButtonOrFAB>
+
+export type DeleteButtonProps = RefineDeleteButtonProps<ButtonOrFAB>

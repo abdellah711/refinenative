@@ -6,7 +6,7 @@ import { Button, ButtonProps, FAB, FABProps } from "react-native-paper";
 export const SaveButton: React.FC<SaveButtonProps> = ({
     hideText = false,
     children,
-    asFAB = true,
+    asFAB = false,
     ...rest
 }) => {
     const translate = useTranslate();
