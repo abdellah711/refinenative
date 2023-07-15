@@ -49,12 +49,13 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         return null;
     }
 
-    const text = hideText ? "" : children ?? translate("buttons.create", "Create");
+    const text = !hideText && (children ?? translate("buttons.create", "Create"));
 
     return asFAB ? (
         <FAB
             label={typeof text === 'string' ? text : undefined}
             icon="plus"
+            mode="elevated"
             disabled={data?.can === false}
             style={{ position: 'absolute', margin: 16, right: 0, bottom: 0 }}
             onPress={() => go({ to: createUrl, type: 'push' })}
@@ -64,6 +65,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         <Button
             disabled={data?.can === false}
             icon="plus"
+            mode="contained"
             onPress={() => go({ to: createUrl, type: 'push' })}
             {...rest as ButtonProps}
         >{text}</Button>
