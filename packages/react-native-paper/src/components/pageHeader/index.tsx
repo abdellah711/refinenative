@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import { View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useResource, useUserFriendlyName, userFriendlyResourceName } from '@refinedev/core'
 import { PageHeaderProps } from './types'
+import { ActivityIndicator, IconButton } from 'react-native-paper'
 
 
 export const PageHeader: React.FC<PageHeaderProps> = ({
@@ -11,6 +12,8 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
     headerLeft,
     headerRight,
     children,
+    isLoading = false,
+    drawerIcon,
 }) => {
     const { setOptions } = useNavigation()
 
@@ -28,14 +31,17 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
             setOptions({
                 title,
                 headerLeft: () => headerLeft,
-                headerRight: () => headerRight
+                headerRight: () => headerRight,
+                drawerIcon,
             })
         }
     }, [title])
 
     return (
-        <View style={{ padding: 15, flex: 1 }} {...wrapperProps}>
-            {children}
-        </View>
+        <ScrollView>
+            <View style={{ padding: 15, flex: 1 }} {...wrapperProps}>
+                {isLoading ? <ActivityIndicator style={{marginTop: 20}}/> : children}
+            </View>
+        </ScrollView>
     )
 }

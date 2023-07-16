@@ -6,4 +6,6 @@ export type PageHeaderProps = PropsWithChildren<{
     wrapperProps?: ViewProps,
     headerRight?: React.ReactNode
     headerLeft?: React.ReactNode
+    isLoading?: boolean
+    drawerIcon?: () => React.ReactNode
 }>

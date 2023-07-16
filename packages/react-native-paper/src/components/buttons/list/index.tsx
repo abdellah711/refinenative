@@ -69,8 +69,6 @@ export const ListButton: React.FC<ListButtonProps> = ({
             ),
         ));
 
-    console.log({ text, identifier })
-
     return asFAB ? (
         <FAB
             label={typeof text === 'string' ? text : undefined}
