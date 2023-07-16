@@ -7,7 +7,7 @@ import {
     RefineRefreshButtonProps,
     RefineListButtonProps,
 } from '@refinedev/ui-types'
-import { ButtonProps, FABProps } from 'react-native-paper'
+import { ButtonProps, FABProps, IconButtonProps } from 'react-native-paper'
 
 // a button by default
 export type ButtonOrFAB = (
@@ -21,6 +21,11 @@ export type FABOrButton = (
     | Partial<FABProps> & { asFAB?: true }
 )
 
+export type ButtonOrIcon = (
+    | Partial<Omit<ButtonProps, 'hideText'>> & { hideText?: false }
+    | Partial<Omit<IconButtonProps, 'hideText'>> & { hideText: true }
+)
+
 export type CreateButtonProps = RefineCreateButtonProps<FABOrButton>
 
 export type SaveButtonProps = RefineSaveButtonProps<ButtonOrFAB>
@@ -31,6 +36,6 @@ export type EditButtonProps = RefineEditButtonProps<ButtonOrFAB>
 
 export type DeleteButtonProps = RefineDeleteButtonProps<ButtonOrFAB>
 
-export type RefreshButtonProps = RefineRefreshButtonProps<ButtonOrFAB>
+export type RefreshButtonProps = RefineRefreshButtonProps<ButtonOrIcon>
 
 export type ListButtonProps = RefineListButtonProps<ButtonOrFAB>
