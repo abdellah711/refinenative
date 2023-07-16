@@ -1,28 +1,24 @@
 import React from 'react'
-import { EditProps } from '../types'
+import { ShowProps } from '../types'
 import {
     useGo,
-    useMutationMode,
     useResource,
     useToPath,
     useTranslate,
     useUserFriendlyName,
     userFriendlyResourceName
 } from '@refinedev/core';
-import { DeleteButtonProps, ListButtonProps, RefreshButtonProps, SaveButtonProps } from '../../buttons/types'
-import { DeleteButton, ListButton, RefreshButton, SaveButton } from '../../buttons'
+import { DeleteButtonProps, EditButtonProps, ListButtonProps, RefreshButtonProps } from '../../buttons/types'
+import { DeleteButton, EditButton, ListButton, RefreshButton } from '../../buttons'
 import { PageHeader } from 'src/components/pageHeader';
 import { View } from 'react-native';
-import { AutoSaveIndicator } from 'src/components/autoSaveIndicator';
 
-export const Edit: React.FC<EditProps> = ({
+export const Show: React.FC<ShowProps> = ({
     children,
     resource: resourceFromProps,
     recordItemId,
-    deleteButtonProps: deleteButtonPropsFromProps,
-    mutationMode: mutationModeFromProps,
-    saveButtonProps: saveButtonPropsFromProps,
     canDelete,
+    canEdit,
     dataProviderName,
     isLoading,
     footerButtons: footerButtonsFromProps,
@@ -31,13 +27,9 @@ export const Edit: React.FC<EditProps> = ({
     headerButtonProps,
     wrapperProps,
     title: titleFromProps,
-    autoSaveProps,
 }) => {
 
     const translate = useTranslate();
-    const { mutationMode: mutationModeContext } = useMutationMode();
-    const mutationMode = mutationModeFromProps ?? mutationModeContext;
-
     const go = useGo();
     const getUserFriendlyName = useUserFriendlyName?.() ?? userFriendlyResourceName;
 
@@ -54,22 +46,43 @@ export const Edit: React.FC<EditProps> = ({
 
     const id = recordItemId ?? idFromParams;
 
+
     const hasList = resource?.list && !recordItemId;
     const isDeleteButtonVisible =
-        canDelete ??
-        ((resource?.meta?.canDelete ?? resource?.canDelete) ||
-            deleteButtonPropsFromProps);
+        canDelete ?? resource?.meta?.canDelete ?? resource?.canDelete;
+    const isEditButtonVisible =
+        canEdit ?? resource?.canEdit ?? !!resource?.edit;
 
     const listButtonProps: ListButtonProps | undefined = hasList
         ? {
             ...(isLoading ? { disabled: true } : {}),
             resource: identifier ?? resource?.name,
+            mode: 'outlined',
             hideText: true,
-            mode: 'outlined'
         }
         : undefined;
-
-    const refreshButtonProps: RefreshButtonProps | undefined = {
+    const editButtonProps: EditButtonProps | undefined = isEditButtonVisible
+        ? {
+            ...(isLoading ? { disabled: true } : {}),
+            resource: identifier ?? resource?.name,
+            recordItemId: id,
+            asFAB: true,
+        }
+        : undefined;
+    const deleteButtonProps: DeleteButtonProps | undefined =
+        isDeleteButtonVisible
+            ? {
+                ...(isLoading ? { disabled: true } : {}),
+                resource: identifier ?? resource?.name,
+                recordItemId: id,
+                onSuccess: () => {
+                    go({ to: goListPath });
+                },
+                dataProviderName,
+                hideText: true,
+            }
+            : undefined;
+    const refreshButtonProps: RefreshButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
         resource: identifier ?? resource?.name,
         recordItemId: id,
@@ -77,38 +90,11 @@ export const Edit: React.FC<EditProps> = ({
         hideText: true,
     };
 
-    const deleteButtonProps: DeleteButtonProps | undefined =
-        isDeleteButtonVisible
-            ? ({
-                ...(isLoading ? { disabled: true } : {}),
-                resource: identifier ?? resource?.name,
-                mutationMode,
-                onSuccess: () => {
-                    go({ to: goListPath });
-                },
-                recordItemId: id,
-                dataProviderName,
-                ...deleteButtonPropsFromProps,
-            } as const)
-            : undefined;
-
-    const saveButtonProps: SaveButtonProps = {
-        ...(isLoading ? { disabled: true } : {}),
-        ...saveButtonPropsFromProps,
-    };
-
     const defaultHeaderButtons = (
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 2 }}>
-            {autoSaveProps && <AutoSaveIndicator {...autoSaveProps} />}
-            {hasList && <ListButton {...listButtonProps} />}
-            <RefreshButton {...refreshButtonProps} />
-        </View>
-    );
-
-    const defaultFooterButtons = (
         <>
+            {listButtonProps && <ListButton {...listButtonProps} />}
             {isDeleteButtonVisible && <DeleteButton {...deleteButtonProps} />}
-            <SaveButton {...saveButtonProps} />
+            <RefreshButton {...refreshButtonProps} />
         </>
     );
 
@@ -116,25 +102,27 @@ export const Edit: React.FC<EditProps> = ({
         ? typeof headerButtonsFromProps === "function"
             ? headerButtonsFromProps({
                 defaultButtons: defaultHeaderButtons,
+                deleteButtonProps,
+                editButtonProps,
                 listButtonProps,
                 refreshButtonProps,
             })
             : headerButtonsFromProps
         : defaultHeaderButtons;
 
+    const defaultFooterButtons = isEditButtonVisible ? (
+        <EditButton {...editButtonProps} />
+    ) : null;
+
     const footerButtons = footerButtonsFromProps
         ? typeof footerButtonsFromProps === "function"
-            ? footerButtonsFromProps({
-                defaultButtons: defaultFooterButtons,
-                deleteButtonProps,
-                saveButtonProps,
-            })
+            ? footerButtonsFromProps({ defaultButtons: defaultFooterButtons })
             : footerButtonsFromProps
         : defaultFooterButtons;
 
     const title = titleFromProps ?? translate(
-        `${identifier}.titles.edit`,
-        `Edit ${getUserFriendlyName(
+        `${identifier}.titles.show`,
+        `Show ${getUserFriendlyName(
             resource?.meta?.label ??
             resource?.options?.label ??
             resource?.label ??
@@ -142,11 +130,9 @@ export const Edit: React.FC<EditProps> = ({
             resource?.name,
             "singular",
         )}`,
-    )
-
+    );
     return (
-        <PageHeader
-            title={title}
+        <PageHeader title={title}
             isLoading={isLoading}
             headerRight={(
                 <View
@@ -163,8 +149,8 @@ export const Edit: React.FC<EditProps> = ({
                 style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 5, marginTop: 8 }}
                 {...footerButtonProps}
             >
-                {footerButtons}
             </View>
+            {footerButtons}
         </PageHeader>
     );
-}
+};
