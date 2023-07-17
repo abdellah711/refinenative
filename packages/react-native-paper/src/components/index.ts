@@ -9,3 +9,5 @@ export * from './pageHeader/types'
 
 export * from './crud'
 export * from './crud/types'
+
+export * from './pages'

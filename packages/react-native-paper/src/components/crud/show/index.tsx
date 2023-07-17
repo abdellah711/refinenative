@@ -149,8 +149,8 @@ export const Show: React.FC<ShowProps> = ({
                 style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 5, marginTop: 8 }}
                 {...footerButtonProps}
             >
+                {footerButtons}
             </View>
-            {footerButtons}
         </PageHeader>
     );
 };

@@ -17,15 +17,16 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.2.2",
+    "@refinedev/ui-types": "^1.18.0",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react-native-paper": "^5.9.1",
     "tsup": "^7.1.0",
-    "typescript": "^5.1.6",
-    "@refinedev/ui-types": "^1.18.0"
+    "typescript": "^5.1.6"
   },
   "peerDependencies": {
     "@refinedev/core": "^4.0.0",
     "react": "^17.0.0 || ^18.0.0",
+    "react-hook-form": "^7.45.1",
     "react-native": "^0.70.0",
     "react-native-paper": "^5.0.0"
   },
@@ -36,5 +37,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@refinedev/react-hook-form": "^4.4.2"
   }
 }
