@@ -3,7 +3,7 @@ import { AuthPageProps } from "@refinedev/core";
 
 import {
     LoginPage,
-    // RegisterPage,
+    RegisterPage,
     // ForgotPasswordPage,
     // UpdatePasswordPage,
 } from "./components";
@@ -15,7 +15,7 @@ export interface FormPropsType<TFormType> extends UseFormProps {
     onSubmit?: (values: TFormType) => void;
 }
 
-export type AuthProps = AuthPageProps<ViewProps, ViewProps, ViewProps> & {
+export type AuthProps = AuthPageProps<ViewProps, ViewProps, FormPropsType<any>> & {
     renderContent?: (
         content: React.ReactNode,
         title: React.ReactNode,
@@ -23,12 +23,12 @@ export type AuthProps = AuthPageProps<ViewProps, ViewProps, ViewProps> & {
     title?: React.ReactNode;
 };
 
-export const AuthPage: React.FC<any> = (props) => {
+export const AuthPage: React.FC<AuthProps> = (props) => {
     const { type } = props;
     const renderView = () => {
         switch (type) {
             case "register":
-                // return <RegisterPage {...props} />;
+                return <RegisterPage {...props} />;
             case "forgotPassword":
                 // return <ForgotPasswordPage {...props} />;
             case "updatePassword":
