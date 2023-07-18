@@ -10,6 +10,7 @@ import {
     useLogout,
     useIsExistAuthentication
 } from '@refinedev/core'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
     Alert,
     Platform
@@ -31,7 +32,10 @@ export const DrawerContent: FC<RefineLayoutDrawerContentProps> = ({
     const { mutate: mutateLogout } = useLogout()
     const isExistAuthentication = useIsExistAuthentication();
 
-    const TitleToRender = Title 
+    const insets = useSafeAreaInsets();
+
+
+    const TitleToRender = Title
 
     const renderTreeView = (tree: ITreeMenu[]) => {
         return tree.map((item) => {
@@ -136,7 +140,7 @@ export const DrawerContent: FC<RefineLayoutDrawerContentProps> = ({
 
     const logout = isExistAuthentication && (
         <>
-            <Divider style={{marginTop:'auto', marginBottom: 10}}/>
+            <Divider style={{ marginTop: 'auto', marginBottom: 10 }} />
             <Button
                 key="logout"
                 onPress={handleLogout}
@@ -165,7 +169,13 @@ export const DrawerContent: FC<RefineLayoutDrawerContentProps> = ({
     };
 
     return (
-        <Surface style={{ flex: 1, padding: 10 }}>
+        <Surface
+            style={{
+                flex: 1,
+                paddingHorizontal: 8,
+                paddingTop: insets.top,
+                paddingBottom: insets.bottom,
+            }}>
             {TitleToRender && <TitleToRender />}
             {renderSider()}
         </Surface>
