@@ -14,6 +14,7 @@ import {
     ListButtonProps,
 } from '..'
 import { ViewProps } from 'react-native'
+import { ReactNode } from 'react'
 
 export type ListProps = Omit<
     RefineCrudListProps<
@@ -22,7 +23,9 @@ export type ListProps = Omit<
         ViewProps
     >,
     'headerProps' | 'contentProps' | 'goBack'
->
+> & {
+    fabButton?: ReactNode
+}
 
 
 export type CreateProps = Omit<
@@ -33,7 +36,9 @@ export type CreateProps = Omit<
         ViewProps
     >,
     'headerProps' | 'contentProps' | 'goBack'
->
+> & {
+    fabButton?: ReactNode
+}
 
 export type EditProps = Omit<RefineCrudEditProps<
     SaveButtonProps,
@@ -50,6 +55,7 @@ export type EditProps = Omit<RefineCrudEditProps<
     'headerProps' | 'contentProps' | 'goBack'
 > & {
     autoSaveProps: any // TODO: add type
+    fabButton?: ReactNode
 }
 
 export type ShowProps = Omit<RefineCrudShowProps<
@@ -65,4 +71,6 @@ export type ShowProps = Omit<RefineCrudShowProps<
     ListButtonProps
 >,
     'headerProps' | 'contentProps' | 'goBack'
->
+> & {
+    fabButton?: ReactNode
+}

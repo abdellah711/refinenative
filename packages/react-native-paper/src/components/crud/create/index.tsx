@@ -22,6 +22,7 @@ export const Create: React.FC<CreateProps> = ({
     headerButtonProps,
     wrapperProps,
     title: titleFromProps,
+    fabButton: fabButtonFromProps,
 }) => {
     const translate = useTranslate();
 
@@ -31,10 +32,9 @@ export const Create: React.FC<CreateProps> = ({
 
     const saveButtonProps: SaveButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
-        ...saveButtonPropsFromProps,
+        asFAB: true,
+        ...saveButtonPropsFromProps as any,
     };
-
-    const defaultFooterButtons = <SaveButton {...saveButtonProps} />;
 
     const headerButtons = headerButtonsFromProps
         ? typeof headerButtonsFromProps === "function"
@@ -47,11 +47,13 @@ export const Create: React.FC<CreateProps> = ({
     const footerButtons = footerButtonsFromProps
         ? typeof footerButtonsFromProps === "function"
             ? footerButtonsFromProps({
-                defaultButtons: defaultFooterButtons,
+                defaultButtons: null,
                 saveButtonProps,
             })
             : footerButtonsFromProps
-        : defaultFooterButtons;
+        : null;
+
+    const fabButton = fabButtonFromProps ?? <SaveButton {...saveButtonProps} />;
 
     const title = titleFromProps ?? translate(
         `${identifier}.titles.create`,
@@ -85,6 +87,7 @@ export const Create: React.FC<CreateProps> = ({
             >
                 {footerButtons}
             </View>
+            {fabButton}
         </PageHeader>
     );
 }

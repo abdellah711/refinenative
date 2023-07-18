@@ -32,6 +32,7 @@ export const Edit: React.FC<EditProps> = ({
     wrapperProps,
     title: titleFromProps,
     autoSaveProps,
+    fabButton: fabButtonFromProps,
 }) => {
 
     const translate = useTranslate();
@@ -165,6 +166,7 @@ export const Edit: React.FC<EditProps> = ({
             >
                 {footerButtons}
             </View>
+            {fabButtonFromProps}
         </PageHeader>
     );
 }

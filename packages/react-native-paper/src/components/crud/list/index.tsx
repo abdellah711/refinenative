@@ -3,6 +3,7 @@ import { PageHeader } from '../../pageHeader'
 import { useResource, useTranslate, useUserFriendlyName, userFriendlyResourceName } from '@refinedev/core'
 import { CreateButton, CreateButtonProps } from '../../'
 import { ListProps } from '../types'
+import { View } from 'react-native'
 
 
 export const List = ({
@@ -12,6 +13,8 @@ export const List = ({
     wrapperProps,
     resource: resourceFromProps,
     createButtonProps: createButtonPropsFromProps,
+    headerButtons: headerButtonsFromProps,
+    headerButtonProps,
 }: ListProps) => {
 
     const { resource, identifier } = useResource(resourceFromProps)
@@ -38,6 +41,16 @@ export const List = ({
     ) : undefined;
 
 
+    const headerButtons = headerButtonsFromProps
+        ? typeof headerButtonsFromProps === "function"
+            ? headerButtonsFromProps({
+                defaultButtons: null,
+                createButtonProps,
+            })
+            : headerButtonsFromProps
+        : null;
+
+
     const title = titleFromProps ?? translate(`${identifier}.titles.list`, getUserFriendlyName(
         resource?.meta?.label ??
         resource?.options?.label ??
@@ -48,7 +61,18 @@ export const List = ({
     ))
 
     return (
-        <PageHeader title={title} wrapperProps={wrapperProps}>
+        <PageHeader
+            title={title}
+            wrapperProps={wrapperProps}
+            headerRight={(
+                <View
+                    style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 5, alignItems: 'center' }}
+                    {...headerButtonProps}
+                >
+                    {headerButtons}
+                </View>
+            )}
+        >
             {defaultButton}
             {children}
         </PageHeader>

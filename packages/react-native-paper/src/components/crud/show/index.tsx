@@ -27,6 +27,7 @@ export const Show: React.FC<ShowProps> = ({
     headerButtonProps,
     wrapperProps,
     title: titleFromProps,
+    fabButton: fabButtonFromProps,
 }) => {
 
     const translate = useTranslate();
@@ -110,15 +111,18 @@ export const Show: React.FC<ShowProps> = ({
             : headerButtonsFromProps
         : defaultHeaderButtons;
 
-    const defaultFooterButtons = isEditButtonVisible ? (
-        <EditButton {...editButtonProps} />
-    ) : null;
 
     const footerButtons = footerButtonsFromProps
         ? typeof footerButtonsFromProps === "function"
-            ? footerButtonsFromProps({ defaultButtons: defaultFooterButtons })
+            ? footerButtonsFromProps({ defaultButtons: null })
             : footerButtonsFromProps
-        : defaultFooterButtons;
+        : null;
+
+    const defaultFabButton = isEditButtonVisible ? (
+        <EditButton {...editButtonProps} />
+    ) : null;
+
+    const fabButton = fabButtonFromProps ?? defaultFabButton;
 
     const title = titleFromProps ?? translate(
         `${identifier}.titles.show`,
@@ -151,6 +155,7 @@ export const Show: React.FC<ShowProps> = ({
             >
                 {footerButtons}
             </View>
+            {fabButton}
         </PageHeader>
     );
 };
