@@ -5,7 +5,7 @@ import {
     LoginPage,
     RegisterPage,
     ForgotPasswordPage,
-    // UpdatePasswordPage,
+    UpdatePasswordPage,
 } from "./components";
 
 import { UseFormProps } from "@refinedev/react-hook-form";
@@ -32,7 +32,7 @@ export const AuthPage: React.FC<AuthProps> = (props) => {
             case "forgotPassword":
                 return <ForgotPasswordPage {...props} />;
             case "updatePassword":
-                // return <UpdatePasswordPage {...props} />;
+                return <UpdatePasswordPage {...props} />;
             default:
                 return <LoginPage {...props} />;
         }

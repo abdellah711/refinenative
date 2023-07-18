@@ -171,7 +171,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
             <Button
                 mode="contained"
-                style={{ alignSelf: 'stretch' }}
+                style={{ 
+                    alignSelf: 'stretch',
+                    marginTop: 10,
+             }}
                 onPress={handleSubmit((data) => {
                     if (onSubmit) {
                         return onSubmit(data);

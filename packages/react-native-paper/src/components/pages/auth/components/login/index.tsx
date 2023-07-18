@@ -192,7 +192,9 @@ export const LoginPage: React.FC<LoginProps> = ({
 
             <Button
                 mode="contained"
-                style={{ alignSelf: 'stretch' }}
+                style={{ 
+                    alignSelf: 'stretch',
+                 }}
                 onPress={handleSubmit((data) => {
                     if (onSubmit) {
                         return onSubmit(data);

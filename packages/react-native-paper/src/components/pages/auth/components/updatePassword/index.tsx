@@ -1,12 +1,12 @@
 import React from "react";
 import {
     useTranslate,
-    useForgotPassword,
-    ForgotPasswordFormTypes,
-    ForgotPasswordPageProps,
+    useUpdatePassword,
+    UpdatePasswordFormTypes,
+    UpdatePasswordPageProps,
     BaseRecord,
     HttpError,
-    useGo,
+    useActiveAuthProvider,
 } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
@@ -15,22 +15,20 @@ import { FormPropsType } from "../..";
 import { View, ViewProps } from "react-native";
 import {
     Surface,
-    TouchableRipple,
     Text,
-    useTheme,
     Button,
+    useTheme,
     TextInput,
 } from "react-native-paper";
 import { Controller } from "react-hook-form";
 
-type ForgotPasswordProps = ForgotPasswordPageProps<
+type UpdatePasswordProps = UpdatePasswordPageProps<
     ViewProps,
     ViewProps,
-    FormPropsType<ForgotPasswordFormTypes>
+    FormPropsType<UpdatePasswordFormTypes>
 >;
 
-export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
-    loginLink,
+export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     wrapperProps,
     contentProps,
     renderContent,
@@ -38,19 +36,21 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     title,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
-    const { mutate } = useForgotPassword<ForgotPasswordFormTypes>();
     const translate = useTranslate();
-
+    const authProvider = useActiveAuthProvider();
+    const { mutate } = useUpdatePassword<UpdatePasswordFormTypes>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const {
-        handleSubmit,
         control,
+        watch,
+        handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, ForgotPasswordFormTypes>({
+    } = useForm<BaseRecord, HttpError, UpdatePasswordFormTypes>({
         ...useFormProps,
     });
 
     const theme = useTheme();
-    const go = useGo();
 
     const PageTitle =
         title === false ? null : (
@@ -78,78 +78,75 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                     marginBottom: 10,
                 }}
             >
-                {translate(
-                    "pages.forgotPassword.title",
-                    "Forgot your password?",
-                )}
+                {translate("pages.updatePassword.title", "Set New Password")}
             </Text>
 
             <Controller
-                name="email"
+                name="password"
                 control={control}
                 rules={{
                     required: true,
-                    pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: translate(
-                            "pages.register.errors.validEmail",
-                            "Invalid email address",
-                        ),
-                    },
                 }}
                 render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
                     <TextInput
-                        label={translate("pages.register.fields.email", "Email")}
+                        label={translate(
+                            "pages.updatePassword.fields.password",
+                            "New Password",
+                        )}
                         onBlur={onBlur}
                         onChangeText={(value) => onChange(value)}
                         value={value}
                         error={error !== undefined}
-                        keyboardType="email-address"
+                        secureTextEntry
                     />
                 )}
             />
-            {errors.email && <Text style={{ color: theme.colors.error }}>{errors.email.message}</Text>}
+            {errors.password && <Text style={{ color: theme.colors.error }}>{errors.password.message}</Text>}
 
-
-            {loginLink ?? (
-                <Text>
-                    {translate(
-                        "pages.login.buttons.haveAccount",
-                        "Have an account?",
-                    )}
-                    <TouchableRipple
-                        onPress={() => go({ to: '/login' })}
-                        style={{
-                            marginStart: 3,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                color: theme.colors.primary,
-                            }}
-                        >
-                            {translate("pages.login.signin", "Sign in")}
-                        </Text>
-                    </TouchableRipple>
-                </Text>
-            )}
+            <Controller
+                name="confirmPassword"
+                control={control}
+                rules={{
+                    required: true,
+                    validate: (val: any) => {
+                        if (watch("password") != val) {
+                            return translate(
+                                "pages.updatePassword.errors.confirmPasswordNotMatch",
+                                "Passwords do not match",
+                            );
+                        }
+                        return;
+                    },
+                }}
+                render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
+                    <TextInput
+                        label={translate(
+                            "pages.updatePassword.fields.confirmPassword",
+                            "Confirm New Password",
+                        )}
+                        onBlur={onBlur}
+                        onChangeText={(value) => onChange(value)}
+                        value={value}
+                        error={error !== undefined}
+                        secureTextEntry
+                    />
+                )}
+            />
+            {errors.confirmPassword && <Text style={{ color: theme.colors.error }}>{errors.confirmPassword.message}</Text>}
 
             <Button
                 mode="contained"
-                style={{ 
+                style={{
                     alignSelf: 'stretch',
                     marginTop: 10,
-                 }}
+                }}
                 onPress={handleSubmit((data) => {
                     if (onSubmit) {
                         return onSubmit(data);
                     }
                     return mutate(data);
                 })}>
-                {translate(
-                    "pages.forgotPassword.buttons.submit",
-                    "Send reset instructions",
-                )}
+                {translate("pages.updatePassword.buttons.submit", "Update")}
             </Button>
         </Surface>
     );
