@@ -171,10 +171,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
             <Button
                 mode="contained"
-                style={{ 
+                style={{
                     alignSelf: 'stretch',
                     marginTop: 10,
-             }}
+                }}
                 onPress={handleSubmit((data) => {
                     if (onSubmit) {
                         return onSubmit(data);
@@ -190,11 +190,19 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 margin: 6,
             }}>
                 {loginLink ?? (
-                    <Text>
-                        {translate(
-                            "pages.login.buttons.haveAccount",
-                            "Have an account?",
-                        )}
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: 3
+                        }}
+                    >
+                        <Text>
+                            {translate(
+                                "pages.login.buttons.haveAccount",
+                                "Have an account?",
+                            )}
+                        </Text>
                         <TouchableRipple
                             onPress={() => go({ to: '/login' })}
                             style={{
@@ -209,7 +217,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                                 {translate("pages.login.signin", "Sign in")}
                             </Text>
                         </TouchableRipple>
-                    </Text>
+                    </View>
                 )}
             </View>
         </Surface>

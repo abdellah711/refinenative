@@ -101,7 +101,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                 style={{
                     display: "flex",
                     justifyContent: "center",
-
+                    ...styles.title,
                 }}
             >
                 {title}
@@ -149,7 +149,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     />
                 )}
             />
-            {errors.email && <Text style={{color: theme.colors.error}}>{errors.email.message}</Text>}
+            {errors.email && <Text style={{ color: theme.colors.error }}>{errors.email.message}</Text>}
 
             <Controller
                 name="password"
@@ -168,7 +168,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     />
                 )}
             />
-            {errors.password && <Text style={{color: theme.colors.error}}>{errors.password.message}</Text>}
+            {errors.password && <Text style={{ color: theme.colors.error }}>{errors.password.message}</Text>}
 
             {rememberMe ?? (
                 <Controller
@@ -192,9 +192,9 @@ export const LoginPage: React.FC<LoginProps> = ({
 
             <Button
                 mode="contained"
-                style={{ 
+                style={{
                     alignSelf: 'stretch',
-                 }}
+                }}
                 onPress={handleSubmit((data) => {
                     if (onSubmit) {
                         return onSubmit(data);
@@ -207,6 +207,7 @@ export const LoginPage: React.FC<LoginProps> = ({
             <View style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems: 'center',
                 margin: 6,
                 flexWrap: 'wrap',
                 gap: 10,
@@ -226,11 +227,19 @@ export const LoginPage: React.FC<LoginProps> = ({
                     </TouchableRipple>
                 )}
                 {registerLink ?? (
-                    <Text>
-                        {translate(
-                            "pages.login.buttons.noAccount",
-                            "Don’t have an account?",
-                        )}
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: 3
+                        }}
+                    >
+                        <Text>
+                            {translate(
+                                "pages.login.buttons.noAccount",
+                                "Don’t have an account?",
+                            )}
+                        </Text>
                         <TouchableRipple
                             onPress={() => go({ to: '/register' })}
                             style={{
@@ -248,7 +257,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                                 )}
                             </Text>
                         </TouchableRipple>
-                    </Text>
+                    </View>
                 )}
             </View>
         </Surface>

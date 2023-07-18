@@ -112,11 +112,19 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
 
 
             {loginLink ?? (
-                <Text>
-                    {translate(
-                        "pages.login.buttons.haveAccount",
-                        "Have an account?",
-                    )}
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: 3
+                    }}
+                >
+                    <Text>
+                        {translate(
+                            "pages.login.buttons.haveAccount",
+                            "Have an account?",
+                        )}
+                    </Text>
                     <TouchableRipple
                         onPress={() => go({ to: '/login' })}
                         style={{
@@ -131,15 +139,15 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                             {translate("pages.login.signin", "Sign in")}
                         </Text>
                     </TouchableRipple>
-                </Text>
+                </View>
             )}
 
             <Button
                 mode="contained"
-                style={{ 
+                style={{
                     alignSelf: 'stretch',
                     marginTop: 10,
-                 }}
+                }}
                 onPress={handleSubmit((data) => {
                     if (onSubmit) {
                         return onSubmit(data);

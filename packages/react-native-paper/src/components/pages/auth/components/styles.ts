@@ -4,7 +4,7 @@ import { Dimensions, StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     layout: {
         flex: 1,
-        justifyContent: "center",
+        paddingTop: 50,
         alignItems: "center",
     },
     card: {
@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
         padding: 29,
         gap: 15,
         borderRadius: 10,
-        marginTop: -50,
     },
     title: {
 
