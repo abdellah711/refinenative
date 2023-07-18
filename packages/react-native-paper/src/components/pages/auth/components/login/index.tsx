@@ -179,7 +179,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             status={value ? 'checked' : 'unchecked'}
                             position="leading"
                             labelStyle={{ textAlign: 'left' }}
-                            style={{ paddingHorizontal: 0 }}
+                            style={{ padding: 0 }}
                             onPress={() => onChange(!value)}
                             label={translate(
                                 "pages.login.buttons.rememberMe",

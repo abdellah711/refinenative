@@ -4,7 +4,7 @@ import { AuthPageProps } from "@refinedev/core";
 import {
     LoginPage,
     RegisterPage,
-    // ForgotPasswordPage,
+    ForgotPasswordPage,
     // UpdatePasswordPage,
 } from "./components";
 
@@ -30,7 +30,7 @@ export const AuthPage: React.FC<AuthProps> = (props) => {
             case "register":
                 return <RegisterPage {...props} />;
             case "forgotPassword":
-                // return <ForgotPasswordPage {...props} />;
+                return <ForgotPasswordPage {...props} />;
             case "updatePassword":
                 // return <UpdatePasswordPage {...props} />;
             default:

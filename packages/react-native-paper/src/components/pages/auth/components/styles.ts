@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         width: Dimensions.get("window").width * .9,
         maxWidth: 450,
         padding: 29,
-        gap: 12,
+        gap: 15,
         borderRadius: 10,
         marginTop: -50,
     },
