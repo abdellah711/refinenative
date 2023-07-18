@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ShowButtonProps } from "../types";
 import { AccessControlContext, useCan, useGo, useNavigation, useResource, useTranslate } from "@refinedev/core";
-import { Button, ButtonProps, FAB, FABProps } from "react-native-paper";
+import { Button, ButtonProps, FAB, FABProps, IconButton, IconButtonProps } from "react-native-paper";
 
 
 export const ShowButton: React.FC<ShowButtonProps> = ({
@@ -63,12 +63,25 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             {...rest as FABProps}
         />
     ) : (
-        <Button
-            disabled={data?.can === false}
-            icon="eye"
-            mode="contained"
-            onPress={() => go({ to: showUrl, type: 'push' })}
-            {...rest as ButtonProps}
-        >{text}</Button>
-    )
+        hideText ? (
+            <IconButton
+                mode="outlined"
+                icon="eye"
+                aria-label={text + ''}
+                disabled={data?.can === false}
+                onPress={() => go({ to: showUrl, type: 'push' })}
+                {...rest as Omit<IconButtonProps, 'icon'>}
+            />
+        ) : (
+            <Button
+                mode="contained"
+                disabled={data?.can === false}
+                icon="eye"
+                onPress={() => go({ to: showUrl, type: 'push' })}
+                {...rest as ButtonProps}
+            >
+                {text}
+            </Button>
+        )
+    );
 }

@@ -11,13 +11,13 @@ import { ButtonProps, FABProps, IconButtonProps } from 'react-native-paper'
 
 // a button by default
 export type ButtonOrFAB = (
-    | Partial<ButtonProps> & { asFAB?: false }
+    | Partial<ButtonOrIcon> & { asFAB?: false }
     | Partial<FABProps> & { asFAB: true }
 )
 
 // a FAB by default
 export type FABOrButton = (
-    | Partial<ButtonProps> & { asFAB: false }
+    | Partial<ButtonOrIcon> & { asFAB: false }
     | Partial<FABProps> & { asFAB?: true }
 )
 

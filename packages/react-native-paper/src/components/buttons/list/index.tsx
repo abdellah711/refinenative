@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ListButtonProps } from "../types";
 import { AccessControlContext, useCan, useGo, useNavigation, useResource, useTranslate, useUserFriendlyName, userFriendlyResourceName } from "@refinedev/core";
-import { Button, ButtonProps, FAB, FABProps } from "react-native-paper";
+import { Button, ButtonProps, FAB, FABProps, IconButton, IconButtonProps } from "react-native-paper";
 
 
 export const ListButton: React.FC<ListButtonProps> = ({
@@ -80,12 +80,25 @@ export const ListButton: React.FC<ListButtonProps> = ({
             {...rest as FABProps}
         />
     ) : (
-        <Button
-            disabled={data?.can === false}
-            icon="format-list-bulleted"
-            mode="contained"
-            onPress={() => go({ to: listUrl, type: 'push' })}
-            {...rest as ButtonProps}
-        >{text}</Button>
-    )
+        hideText ? (
+            <IconButton
+                mode="outlined"
+                icon="format-list-bulleted"
+                aria-label={text + ''}
+                disabled={data?.can === false}
+                onPress={() => go({ to: listUrl, type: 'push' })}
+                {...rest as Omit<IconButtonProps, 'icon'>}
+            />
+        ) : (
+            <Button
+                mode="outlined"
+                icon="format-list-bulleted"
+                disabled={data?.can === false}
+                onPress={() => go({ to: listUrl, type: 'push' })}
+                {...rest as ButtonProps}
+            >
+                {text}
+            </Button>
+        )
+    );
 }

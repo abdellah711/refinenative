@@ -1,7 +1,7 @@
 import React from "react";
 import { SaveButtonProps } from "../types";
 import { useTranslate } from "@refinedev/core";
-import { Button, ButtonProps, FAB, FABProps } from "react-native-paper";
+import { Button, ButtonProps, FAB, FABProps, IconButton, IconButtonProps } from "react-native-paper";
 
 export const SaveButton: React.FC<SaveButtonProps> = ({
     hideText = false,
@@ -11,7 +11,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const text = !hideText &&  (children ?? translate("buttons.save", "Save"));
+    const text = !hideText && (children ?? translate("buttons.save", "Save"));
 
     return asFAB ? (
         <FAB
@@ -22,10 +22,21 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             {...rest as FABProps}
         />
     ) : (
-        <Button
-            icon="content-save-outline"
-            mode="contained"
-            {...rest as ButtonProps}
-        >{text}</Button>
-    )
+        hideText ? (
+            <IconButton
+                mode="outlined"
+                icon="content-save-outline"
+                aria-label={text + ''}
+                {...rest as Omit<IconButtonProps, 'icon'>}
+            />
+        ) : (
+            <Button
+                mode="contained"
+                icon="content-save-outline"
+                {...rest as ButtonProps}
+            >
+                {text}
+            </Button>
+        )
+    );
 };

@@ -140,7 +140,12 @@ export const Show: React.FC<ShowProps> = ({
             isLoading={isLoading}
             headerRight={(
                 <View
-                    style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 5, alignItems: 'center' }}
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
+                        gap: 3,
+                        alignItems: 'center'
+                    }}
                     {...headerButtonProps}
                 >
                     {headerButtons}

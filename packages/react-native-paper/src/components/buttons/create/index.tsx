@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { AccessControlContext, useCan, useGo, useNavigation, useResource, useTranslate } from '@refinedev/core'
-import { Button, ButtonProps, FAB, FABProps, } from 'react-native-paper'
+import { Button, ButtonProps, FAB, FABProps, IconButton, IconButtonProps, } from 'react-native-paper'
 import { CreateButtonProps } from '../types';
 
 
@@ -62,12 +62,25 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             {...rest as FABProps}
         />
     ) : (
-        <Button
-            disabled={data?.can === false}
-            icon="plus"
-            mode="contained"
-            onPress={() => go({ to: createUrl, type: 'push' })}
-            {...rest as ButtonProps}
-        >{text}</Button>
-    )
+        hideText ? (
+            <IconButton
+                mode="outlined"
+                disabled={data?.can === false}
+                icon="plus"
+                aria-label={text + ''}
+                onPress={() => go({ to: createUrl, type: 'push' })}
+                {...rest as Omit<IconButtonProps, 'icon'>}
+            />
+        ) : (
+            <Button
+                disabled={data?.can === false}
+                icon="plus"
+                mode="contained"
+                onPress={() => go({ to: createUrl, type: 'push' })}
+                {...rest as ButtonProps}
+            >
+                {text}
+            </Button>
+        )
+    );
 }

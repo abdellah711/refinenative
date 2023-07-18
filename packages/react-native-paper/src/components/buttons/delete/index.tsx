@@ -4,6 +4,8 @@ import {
     ButtonProps,
     FAB,
     FABProps,
+    IconButton,
+    IconButtonProps,
     Modal,
     Portal,
     Text,
@@ -154,19 +156,35 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                     {...rest as FABProps}
                 />
             ) : (
-                <Button
-                    mode="contained"
-                    buttonColor={theme.colors.errorContainer}
-                    textColor={theme.colors.error}
-                    icon="delete"
-                    disabled={data?.can === false}
-                    onPress={() => setShowModal(true)}
-                    loading={(recordItemId ?? id) === variables?.id && isLoading}
-                    testID={RefineButtonTestIds.DeleteButton}
-                    {...rest as ButtonProps}
-                >
-                    {text}
-                </Button >
+                hideText ? (
+                    <IconButton
+                        mode="outlined"
+                        iconColor={theme.colors.error}
+                        icon="delete"
+                        testID={RefineButtonTestIds.DeleteButton}
+                        aria-label={text + ''}
+                        disabled={
+                            ((recordItemId ?? id) === variables?.id && isLoading)
+                            || data?.can === false
+                        }
+                        onPress={() => setShowModal(true)}
+                        {...rest as Omit<IconButtonProps, 'icon'>}
+                    />
+                ) : (
+                    <Button
+                        mode="contained"
+                        buttonColor={theme.colors.errorContainer}
+                        textColor={theme.colors.error}
+                        icon="delete"
+                        disabled={data?.can === false}
+                        onPress={() => setShowModal(true)}
+                        loading={(recordItemId ?? id) === variables?.id && isLoading}
+                        testID={RefineButtonTestIds.DeleteButton}
+                        {...rest as ButtonProps}
+                    >
+                        {text}
+                    </Button>
+                )
             )}
         </>
     )

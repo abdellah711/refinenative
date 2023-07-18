@@ -10,7 +10,6 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     hideText = false,
     meta,
     dataProviderName,
-    icon,
     children,
     onPress,
     ...rest
@@ -33,7 +32,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     return hideText ? (
         <IconButton
             mode="outlined"
-            icon={icon ?? "refresh"}
+            icon="refresh"
             aria-label={translate("buttons.refresh", "Refresh")}
             onPress={() => refetch()}
             disabled={isFetching}

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { EditButtonProps } from "../types";
 import { AccessControlContext, useCan, useGo, useNavigation, useResource, useTranslate } from "@refinedev/core";
-import { Button, ButtonProps, FAB, FABProps } from "react-native-paper";
+import { Button, ButtonProps, FAB, FABProps, IconButton, IconButtonProps } from "react-native-paper";
 
 
 export const EditButton: React.FC<EditButtonProps> = ({
@@ -14,7 +14,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
     onPress,
     asFAB = false,
     ...rest
- }) => {
+}) => {
     const accessControlContext = useContext(AccessControlContext);
 
     const accessControlEnabled =
@@ -29,9 +29,9 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const { editUrl: generateEditUrl } = useNavigation();
 
-    const { resource,id } = useResource(resourceNameFromProps);
+    const { resource, id } = useResource(resourceNameFromProps);
 
-        const { data } = useCan({
+    const { data } = useCan({
         resource: resource?.name,
         action: "edit",
         params: { id: recordItemId ?? id, resource },
@@ -65,12 +65,25 @@ export const EditButton: React.FC<EditButtonProps> = ({
             {...rest as FABProps}
         />
     ) : (
-        <Button
-            disabled={data?.can === false}
-            icon="pen"
-            mode="contained"
-            onPress={() => go({ to: editUrl, type: 'push' })}
-            {...rest as ButtonProps}
-        >{text}</Button>
-    )
+        hideText ? (
+            <IconButton
+                mode="outlined"
+                icon="pen"
+                aria-label={text + ''}
+                disabled={data?.can === false}
+                onPress={() => go({ to: editUrl, type: 'push' })}
+                {...rest as Omit<IconButtonProps, 'icon'>}
+            />
+        ) : (
+            <Button
+                disabled={data?.can === false}
+                icon="pen"
+                mode="contained"
+                onPress={() => go({ to: editUrl, type: 'push' })}
+                {...rest as ButtonProps}
+            >
+                {text}
+            </Button>
+        )
+    );
 }
