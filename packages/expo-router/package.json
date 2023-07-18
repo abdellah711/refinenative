@@ -1,6 +1,6 @@
 {
   "name": "@refinenative/expo-router",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "refine expo-router provider",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -23,17 +23,17 @@
     "@types/qs": "^6.9.7",
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/url-parse": "^1.4.8",
-    "expo-router": "^1.5.3",
-    "tsup": "^7.1.0",
-    "typescript": "^5.1.6",
     "expo-constants": "*",
     "expo-linking": "*",
+    "expo-router": "^1.5.3",
     "expo-status-bar": "*",
     "metro": "~0.76.7",
     "react-native-gesture-handler": "*",
     "react-native-reanimated": "*",
     "react-native-safe-area-context": "*",
-    "react-native-screens": "*"
+    "react-native-screens": "*",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6"
   },
   "dependencies": {
     "qs": "^6.11.2"
