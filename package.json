@@ -6,7 +6,8 @@
   "author": "abdellah711",
   "license": "MIT",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
     "build": "lerna run build"
