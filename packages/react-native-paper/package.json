@@ -1,6 +1,6 @@
 {
   "name": "@refinenative/react-native-paper",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "react native paper components for refine apps",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
