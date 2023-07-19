@@ -47,7 +47,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     const { onSubmit, ...useFormProps } = formProps || {};
 
     const authProvider = useActiveAuthProvider();
-    const { mutate: login } = useLogin<LoginFormTypes>({
+    const { mutate: login, data, isError } = useLogin<LoginFormTypes>({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
@@ -190,12 +190,21 @@ export const LoginPage: React.FC<LoginProps> = ({
                 />
             )}
 
+            {((data as any)?.error || isError) && (
+                <Text style={{ color: theme.colors.error }}>
+                    {(data as any)?.error?.message ?? translate(
+                        "pages.login.errors.invalidCredentials",
+                        "Invalid credentials",
+                    )}
+                </Text>
+            )}
             <Button
                 mode="contained"
                 style={{
                     alignSelf: 'stretch',
                 }}
                 onPress={handleSubmit((data) => {
+                    console.log('data', data)
                     if (onSubmit) {
                         return onSubmit(data);
                     }
