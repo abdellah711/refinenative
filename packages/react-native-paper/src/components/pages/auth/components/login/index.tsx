@@ -204,7 +204,6 @@ export const LoginPage: React.FC<LoginProps> = ({
                     alignSelf: 'stretch',
                 }}
                 onPress={handleSubmit((data) => {
-                    console.log('data', data)
                     if (onSubmit) {
                         return onSubmit(data);
                     }
