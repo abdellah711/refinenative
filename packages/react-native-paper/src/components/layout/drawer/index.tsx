@@ -18,6 +18,7 @@ import {
 
 import { RefineLayoutDrawerContentProps } from '../types'
 import { Button, Divider, Drawer, Surface } from 'react-native-paper'
+import { Title as DefaultTitle } from '../title'
 
 export const DrawerContent: FC<RefineLayoutDrawerContentProps> = ({
     Title,
@@ -35,7 +36,7 @@ export const DrawerContent: FC<RefineLayoutDrawerContentProps> = ({
     const insets = useSafeAreaInsets();
 
 
-    const TitleToRender = Title
+    const TitleToRender = Title ?? DefaultTitle
 
     const renderTreeView = (tree: ITreeMenu[]) => {
         return tree.map((item) => {
@@ -59,6 +60,7 @@ export const DrawerContent: FC<RefineLayoutDrawerContentProps> = ({
                         active={isSelected}
                         focusedIcon={typeof icon === 'string' ? icon : () => icon}
                         unfocusedIcon={typeof icon === 'string' ? icon : () => icon}
+                        style={{ marginBottom: 3 }}
                     >
                         {renderTreeView(children)}
                     </Drawer.CollapsedItem>
@@ -79,6 +81,7 @@ export const DrawerContent: FC<RefineLayoutDrawerContentProps> = ({
                         icon={typeof icon === 'string' ? icon : () => icon}
                         onPress={() => go({ to: list as string, type: 'push' })}
                         active={isSelected}
+                        style={{ marginBottom: 3 }}
                     />
                 </CanAccess>
             );
@@ -140,11 +143,12 @@ export const DrawerContent: FC<RefineLayoutDrawerContentProps> = ({
 
     const logout = isExistAuthentication && (
         <>
-            <Divider style={{ marginTop: 'auto', marginBottom: 10 }} />
+            <Divider style={{ marginTop: 'auto'}} />
             <Button
                 key="logout"
                 onPress={handleLogout}
                 icon="logout"
+                style={{ marginVertical: 10 }}
             >
                 {translate("buttons.logout", "Logout")}
             </Button>
