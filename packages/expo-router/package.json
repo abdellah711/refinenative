@@ -1,6 +1,6 @@
 {
   "name": "@refinenative/expo-router",
-  "version": "0.1.3",
+  "version": "0.1.7",
   "description": "refine expo-router provider",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
