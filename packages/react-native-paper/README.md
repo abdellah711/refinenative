@@ -6,7 +6,7 @@
 
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-  <img src="./logo.png"   style="width:350px;" align="center" />
+  <img src="https://github.com/abdellah711/refinenative/raw/main/logo.png"   style="width:350px;" align="center" />
 </a>
 <br />
 <br />
