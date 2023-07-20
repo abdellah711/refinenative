@@ -151,7 +151,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                     disabled={data?.can === false}
                     testID={RefineButtonTestIds.DeleteButton}
                     loading={(recordItemId ?? id) === variables?.id && isLoading}
-                    style={{ position: 'absolute', margin: 16, right: 0, bottom: 0, backgroundColor: theme.colors.errorContainer }}
+                    style={{ position: 'absolute', margin: 16, right: 0, bottom: 0, zIndex: 50, backgroundColor: theme.colors.errorContainer }}
                     onPress={() => setShowModal(true)}
                     {...rest as FABProps}
                 />

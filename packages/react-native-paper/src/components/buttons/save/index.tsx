@@ -18,7 +18,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             label={typeof text === 'string' ? text : undefined}
             icon="content-save-outline"
             mode="elevated"
-            style={{ position: 'absolute', margin: 16, right: 0, bottom: 0 }}
+            style={{ position: 'absolute', margin: 16, right: 0, bottom: 0, zIndex: 50 }}
             {...rest as FABProps}
         />
     ) : (

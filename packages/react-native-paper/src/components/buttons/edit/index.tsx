@@ -60,7 +60,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
             icon="pen"
             mode="elevated"
             disabled={data?.can === false}
-            style={{ position: 'absolute', margin: 16, right: 0, bottom: 0 }}
+            style={{ position: 'absolute', margin: 16, right: 0, bottom: 0, zIndex: 50 }}
             onPress={() => go({ to: editUrl, type: 'push' })}
             {...rest as FABProps}
         />
