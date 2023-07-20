@@ -8,4 +8,5 @@ export type PageHeaderProps = PropsWithChildren<{
     headerLeft?: React.ReactNode
     isLoading?: boolean
     drawerIcon?: () => React.ReactNode
+    scrollable?: boolean
 }>

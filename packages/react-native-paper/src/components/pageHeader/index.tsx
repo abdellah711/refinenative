@@ -14,6 +14,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
     children,
     isLoading = false,
     drawerIcon,
+    scrollable = true,
 }) => {
     const { setOptions } = useNavigation()
 
@@ -37,11 +38,13 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
         }
     }, [title])
 
+    const Wrapper = scrollable ? ScrollView : View
+
     return (
-        <ScrollView style={{flex: 1}} contentContainerStyle={{flex: 1}}>
+        <Wrapper style={{flex: 1}} contentContainerStyle={{flex: 1}}>
             <View style={{ padding: 15, flex:1 }} {...wrapperProps}>
                 {isLoading ? <ActivityIndicator style={{marginTop: 20}}/> : children}
             </View>
-        </ScrollView>
+        </Wrapper>
     )
 }

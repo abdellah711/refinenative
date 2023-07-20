@@ -77,9 +77,10 @@ export const List = ({
                     {headerButtons}
                 </View>
             )}
+            scrollable={false}
         >
-            {defaultButton}
             {children}
+            {defaultButton}
         </PageHeader>
     )
 }
