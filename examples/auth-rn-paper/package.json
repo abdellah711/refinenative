@@ -1,0 +1,53 @@
+{
+  "name": "auth-rn-paper",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
+    "@react-native-async-storage/async-storage": "1.17.11",
+    "@react-native-picker/picker": "^2.4.10",
+    "@react-navigation/drawer": "^6.6.3",
+    "@refinedev/core": "^4.22.0",
+    "@refinedev/react-hook-form": "^4.4.0",
+    "@refinedev/simple-rest": "^4.5.0",
+    "@refinenative/expo-router": "^0.1.7",
+    "@refinenative/react-native-paper": "^0.1.11",
+    "expo": "~48.0.18",
+    "expo-constants": "~14.2.1",
+    "expo-linking": "~4.0.1",
+    "expo-router": "^1.5.3",
+    "expo-status-bar": "~1.4.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.0",
+    "react-native": "0.71.8",
+    "react-native-gesture-handler": "~2.9.0",
+    "react-native-paper": "^5.8.0",
+    "react-native-reanimated": "~2.14.4",
+    "react-native-safe-area-context": "4.5.0",
+    "react-native-screens": "~3.20.0",
+    "react-native-svg": "^13.10.0",
+    "react-native-web": "~0.18.10",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@refinedev/ui-types": "^1.18.0",
+    "@types/react": "~18.0.27"
+  },
+  "resolutions": {
+    "metro": "0.73.10",
+    "metro-resolver": "0.73.10"
+  },
+  "overrides": {
+    "metro": "0.73.10",
+    "metro-resolver": "0.73.10"
+  },
+  "private": true
+}

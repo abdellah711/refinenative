@@ -54,7 +54,7 @@ export type EditProps = Omit<RefineCrudEditProps<
 >,
     'headerProps' | 'contentProps' | 'goBack'
 > & {
-    autoSaveProps: any // TODO: add type
+    autoSaveProps?: any // TODO: add type
     fabButton?: ReactNode
 }
 
