@@ -76,20 +76,21 @@ export default function layout() {
 Now you can start using the features of Refine just like you would do in a web project.
 
 ## TODO
-<input type="checkbox"> Write unit tests
+[] Write unit tests
 <br/>
-<input type="checkbox"> Automate the build & release process
+[] Automate the build & release process
 <br/>
-<input type="checkbox"> Add more examples
+[] Add more examples
 <br/>
-<input type="checkbox"> Write documentation
+[] Write documentation
 <br/>
-<input type="checkbox"> Add more features to @refinenative/react-native-paper
+[] Add more features to @refinenative/react-native-paper
 <br/>
-<input type="checkbox"> Support react-navigation and other navigation libraries
+[] Support react-navigation and other navigation libraries
 <br/>
-<input type="checkbox"> Build an inferencer for react-native-paper
-<input type="checkbox"> Support other UI libraries like react-native-elements
+[] Build an inferencer for react-native-paper
+<br/>
+[] Support other UI libraries like react-native-elements
 
 ## Contribution
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
