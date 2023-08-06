@@ -13,6 +13,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "@refinedev/core": "^4.26.2",
     "lerna": "^7.1.1",
     "react": "^18.2.0",
