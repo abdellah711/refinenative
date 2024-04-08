@@ -46,7 +46,7 @@ export const routerBindings: RouterBindings = {
             }
 
             if (type === 'replace') {
-                return push(urlTo)
+                return replace(urlTo)
             }
 
             push(urlTo)
